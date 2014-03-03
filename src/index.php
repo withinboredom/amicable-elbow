@@ -56,6 +56,8 @@
     <script src="js/libs/components/ember-data/ember-data.js"></script>
     <script src="js/app/app.js"></script>
     <script src="js/app/Router.js"></script>
+    <script src="js/data/user.js"></script>
+    <script src="js/data/Fixtures.js"></script>
 
     </body>
 </html>
