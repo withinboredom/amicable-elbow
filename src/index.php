@@ -47,18 +47,35 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="index">
+        <h1>Top 50 Free Apps</h1>
 
+        <ul>
+            {{#each}}
+            <li>
+                {{displayName}} for {{platform.displayName}} in category: {{category.displayName}}
+                <ul>
+                    <li>PerHour: {{money perHour}}</li>
+                    <li>toComplete: {{money toComplete}}</li>
+                    <li>Unlock All: {{money unlockAll}}</li>
+                    <li>Subscription: {{money subscription}}</li>
+                </ul>
+            </li>
+            {{/each}}
+        </ul>
     </script>
 
     <script src="js/libs/components/jquery/jquery.js"></script>
+    <script src="js/libs/accounting.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/libs/components/handlebars/handlebars.js"></script>
     <script src="js/libs/components/ember/ember.js"></script>
     <script src="js/libs/components/ember-data/ember-data.js"></script>
+    <script src="js/helpers/helpers.js"></script>
     <script src="js/app/app.js"></script>
     <script src="js/app/Router.js"></script>
+    <script src="js/app/index.js"></script>
     <script src="js/data/user.js"></script>
+    <script src="js/data/app.js"></script>
     <script src="js/data/Fixtures.js"></script>
-
     </body>
 </html>
