@@ -6,8 +6,4 @@ src/js/libs/components
 composer.lock
 composer.phar
 *.min.js
-*.map
-src/js/app/*.js
-src/js/data/*.js
-src/js/helpers/*.js
 *.min.css
