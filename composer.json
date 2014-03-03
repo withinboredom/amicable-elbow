@@ -1,0 +1,6 @@
+{
+    "require": {
+        "components/ember": "1.3.1",
+        "components/ember-data": "1.0.0-beta.7"
+    }
+}
