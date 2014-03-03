@@ -5,7 +5,7 @@ Handlebars.registerHelper "login", ->
   widget = new Auth0Widget
     domain:           'appti2ude.auth0.com'
     clientID:         '4QBrlEZHS38TjIeyubMXCasvau2bJALW'
-    callbackURL:      'https://appti2ude.auth0.com/mobile'
+    callbackURL:      'http://appti2ude.com/#/app/new'
     callbackOnLocationHash: true
     scope: "openid"
 
