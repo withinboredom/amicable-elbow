@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Appti2ude -- The Real Cost of Apps</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
         <link rel="stylesheet" href="css/style.css">
 
         <!--[if lt IE 9]>
