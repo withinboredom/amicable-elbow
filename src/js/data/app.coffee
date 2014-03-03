@@ -1,5 +1,4 @@
 App.App = DS.Model.extend
-  id: DS.attr "string"
   createdAt: DS.attr "date",
     defaultValue: -> new Date()
   displayName: DS.attr "string"
@@ -7,4 +6,13 @@ App.App = DS.Model.extend
   toComplete: DS.attr "number"
   unlockAll: DS.attr "number"
   subscription: DS.attr "number"
-  category: DS.attr "string"
+  category: DS.belongsTo "appCategories"
+  platform: DS.belongsTo "appPlatforms"
+
+App.AppPlatforms = DS.Model.extend
+  displayName: DS.attr "string"
+  apps: DS.hasMany "app"
+
+App.AppCategories = DS.Model.extend
+  displayName: DS.attr "string"
+  apps: DS.hasMany "app"
