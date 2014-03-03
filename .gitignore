@@ -8,4 +8,5 @@ composer.phar
 *.min.js
 *.map
 src/js/app/*.js
+src/js/data/*.js
 *.min.css
