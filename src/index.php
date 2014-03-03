@@ -26,7 +26,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Appti2ude</a>
+                    {{#link-to 'index' classNames='navbar-brand' }}Appti2ude{{/link-to}}
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
