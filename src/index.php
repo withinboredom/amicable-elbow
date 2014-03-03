@@ -64,6 +64,15 @@
         </ul>
     </script>
 
+    <script type="text/x-handlebars" data-template-name="newapp">
+        <div id="root" style="width: 400px; margin: 40px auto; padding: 10px; border-style: dashed; border-width: 1px;">
+            Please Wait, loading login widget
+        </div>
+
+        {{login}}
+
+    </script>
+
     <script src="js/libs/components/jquery/jquery.js"></script>
     <script src="js/libs/accounting.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -77,5 +86,7 @@
     <script src="js/data/user.js"></script>
     <script src="js/data/app.js"></script>
     <script src="js/data/Fixtures.js"></script>
+
+    <script src="https://cdn.auth0.com/w2/auth0-widget-2.5.13.min.js"></script>
     </body>
 </html>
