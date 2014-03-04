@@ -32,6 +32,16 @@
     }
   ];
 
+  App.AppCurrencyType.FIXTURES = [
+    {
+      id: "1",
+      displayName: "Gems"
+    }, {
+      id: "2",
+      displayName: "Credits"
+    }
+  ];
+
 }).call(this);
 
 //# sourceMappingURL=Fixtures.map

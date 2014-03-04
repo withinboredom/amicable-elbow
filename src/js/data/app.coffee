@@ -8,6 +8,7 @@ App.App = DS.Model.extend
   subscription: DS.attr "number"
   category: DS.belongsTo "appCategories"
   platform: DS.belongsTo "appPlatforms"
+  specialCurrency: DS.hasMany "appCurrencyType"
 
 App.AppPlatforms = DS.Model.extend
   displayName: DS.attr "string"
@@ -16,3 +17,14 @@ App.AppPlatforms = DS.Model.extend
 App.AppCategories = DS.Model.extend
   displayName: DS.attr "string"
   apps: DS.hasMany "app"
+
+App.AppCurrencyType = DS.Model.extend
+  displayName: DS.attr "string"
+  apps: DS.hasMany "app"
+  packs: DS.hasMany "appCurrencyPack"
+
+App.AppCurrencyPack = DS.Model.extend
+  displayName: DS.attr "string"
+  cost: DS.attr "number"
+  exchange: DS.attr "number"
+  exchangeCurrency: DS.belongsTo "appCurrencyType"

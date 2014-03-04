@@ -2,7 +2,11 @@
 (function() {
   App.Router.map(function() {
     return this.resource('app', function() {
-      return this.route("new");
+      return this.resource("new", function() {
+        return this.resource("appPack", function() {
+          return this.route("new");
+        });
+      });
     });
   });
 

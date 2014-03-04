@@ -30,3 +30,14 @@ App.App.FIXTURES = [
     currency: "1"
   }
 ]
+
+App.AppCurrencyType.FIXTURES = [
+  {
+    id: "1"
+    displayName: "Gems"
+  },
+  {
+    id: "2"
+    displayName: "Credits"
+  }
+]
