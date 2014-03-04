@@ -13,6 +13,7 @@ Handle logins
     name: null,
     nick: null,
     picture: null,
+    identities: null,
     init: function() {
       this._super();
       return client.currentUser = {
@@ -26,7 +27,8 @@ Handle logins
         token: this.get("token"),
         name: this.get("name"),
         nick: this.get("nick"),
-        picture: this.get("picture")
+        picture: this.get("picture"),
+        identities: this.get("identities")
       };
     }
   });
@@ -47,8 +49,10 @@ Handle logins
           token: delegationResult.id_token,
           name: profile.name,
           nick: profile.nickname,
-          picture: profile.picture
+          picture: profile.picture,
+          identities: profile.identities
         });
+        console.log(profile);
         if ((typeof App !== "undefined" && App !== null) && (App.LoginStateManager != null)) {
           App.LoginStateManager.send("login");
           window.location.hash = "#/app/new";

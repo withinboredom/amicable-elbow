@@ -8,6 +8,7 @@ Ember.User = Ember.Object.extend
   name: null
   nick: null
   picture: null
+  identities: null
   init: () ->
     @_super()
     client.currentUser =
@@ -20,6 +21,7 @@ Ember.User = Ember.Object.extend
       name: @get "name"
       nick: @get "nick"
       picture: @get "picture"
+      identities: @get "identities"
     }
 
 if window.location.hash.match /^#access_token/
@@ -38,6 +40,9 @@ if window.location.hash.match /^#access_token/
         name: profile.name
         nick: profile.nickname
         picture: profile.picture
+        identities: profile.identities
+
+      console.log profile
 
       if App? and App.LoginStateManager?
         App.LoginStateManager.send "login"
