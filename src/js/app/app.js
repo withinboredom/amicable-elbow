@@ -49,6 +49,11 @@ Handle logins
           nick: profile.nickname,
           picture: profile.picture
         });
+        if ((typeof App !== "undefined" && App !== null) && (App.LoginStateManager != null)) {
+          App.LoginStateManager.send("login");
+          window.location.hash = "#/app/new";
+          window.location.hash.substring(1);
+        }
         return $.cookie("currentUser", JSON.stringify(App.user.baseObj()));
       });
     });
@@ -82,7 +87,7 @@ Handle logins
 
   App.LoginStateManager = Ember.StateManager.create({
     initialState: (function() {
-      if ($.cookie("currentUser") != null) {
+      if (($.cookie("currentUser") != null) && (App.user == null)) {
         App.user = Ember.User.create(JSON.parse($.cookie("currentUser")));
       }
       if (client.currentUser != null) {

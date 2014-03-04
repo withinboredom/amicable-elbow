@@ -39,6 +39,11 @@ if window.location.hash.match /^#access_token/
         nick: profile.nickname
         picture: profile.picture
 
+      if App? and App.LoginStateManager?
+        App.LoginStateManager.send "login"
+        window.location.hash = "#/app/new"
+        window.location.hash.substring 1
+
       $.cookie "currentUser", JSON.stringify(App.user.baseObj())
     ))
 
@@ -64,7 +69,7 @@ App.ApplicationAdapter = DS.FixtureAdapter.extend()
 ###
 App.LoginStateManager = Ember.StateManager.create
   initialState: (->
-    if $.cookie("currentUser")?
+    if $.cookie("currentUser")? and not App.user?
       App.user = Ember.User.create(JSON.parse($.cookie("currentUser")))
 
     if client.currentUser?
