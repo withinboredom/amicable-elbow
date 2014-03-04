@@ -76,7 +76,7 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="app/new">
-<h1>TEST</h1>
+
     </script>
 
     <script src="http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.1.3.min.js"></script>
