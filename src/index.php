@@ -30,12 +30,17 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active">{{#link-to 'index'}}Home{{/link-to}}</li>
+                        {{#link-to "index" activeClass="active" tagName="li"}}{{#link-to 'index'}}All{{/link-to}}{{/link-to}}
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
-                        <li>{{#link-to 'newapp'}}<span class="glyphicon glyphicon-plus"></span> Add App{{/link-to}}</li>
+                        {{#unless isAuthenticated}}
+                            <li><a {{action login "facebook"}} href="#"><span class="glyphicon glyphicon-plus"></span> Add App</a></li>
+                        {{else}}
+                            {{#link-to "app.new" activeClass="active" tagName="li"}}{{#link-to 'app.new'}}<span class="glyphicon glyphicon-plus"></span> Add App{{/link-to}}{{/link-to}}
+                            <li><a class="brand"><img {{bind-attr src="picture"}} style="height:25px" /> {{nick}}</a> </li>
+                        {{/unless}}
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -51,33 +56,42 @@
 
         <ul>
             {{#each}}
-            <li>
+            <li class="app">
                 {{displayName}} for {{platform.displayName}} in category: {{category.displayName}}
-                <ul>
+                <ul class="stats">
                     <li>PerHour: {{money perHour}}</li>
                     <li>toComplete: {{money toComplete}}</li>
                     <li>Unlock All: {{money unlockAll}}</li>
                     <li>Subscription: {{money subscription}}</li>
+                </ul>
+                <ul class="comments">
                 </ul>
             </li>
             {{/each}}
         </ul>
     </script>
 
-    <script type="text/x-handlebars" data-template-name="newapp">
-        <div id="root" style="width: 400px; margin: 40px auto; padding: 10px; border-style: dashed; border-width: 1px;">
-            Please Wait, loading login widget
-        </div>
+    <script type="text/x-handlebars" data-template-name="app/new">
+<h1>TEST</h1>
+    </script>
 
-        {{login}}
+    <script src="http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.1.3.min.js"></script>
+    <script src="https://cdn.auth0.com/w2/auth0-widget-2.5.13.min.js"></script>
 
+    <script>
+        var client = new WindowsAzure.MobileServiceClient(
+            "https://appti2ude.azure-mobile.net/",
+            "kiyLJPbCirhUHJXPjZDznVfiIzaFkr54"
+        );
     </script>
 
     <script src="js/libs/components/jquery/jquery.js"></script>
+    <script src="js/libs/components/jquery.cookie.js"></script>
     <script src="js/libs/accounting.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/libs/components/handlebars/handlebars.js"></script>
     <script src="js/libs/components/ember/ember.js"></script>
+    <script src="js/libs/ember-states.js"></script>
     <script src="js/libs/components/ember-data/ember-data.js"></script>
     <script src="js/helpers/helpers.js"></script>
     <script src="js/app/app.js"></script>
@@ -86,7 +100,5 @@
     <script src="js/data/user.js"></script>
     <script src="js/data/app.js"></script>
     <script src="js/data/Fixtures.js"></script>
-
-    <script src="https://cdn.auth0.com/w2/auth0-widget-2.5.13.min.js"></script>
     </body>
 </html>

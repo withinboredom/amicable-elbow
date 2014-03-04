@@ -1,3 +1,5 @@
 App.Router.map ->
-  @resource 'newapp',
-    path: 'app/new'
+  @resource 'app', ->
+    @route "new"
+
+App.AppNewRoute = Ember.AuthenticatedRoute.extend()

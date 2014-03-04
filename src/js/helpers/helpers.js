@@ -9,8 +9,7 @@
     widget = new Auth0Widget({
       domain: 'appti2ude.auth0.com',
       clientID: '4QBrlEZHS38TjIeyubMXCasvau2bJALW',
-      callbackURL: 'http://appti2ude.com/#/app/new',
-      callbackOnLocationHash: true,
+      callbackURL: 'http://appti2ude.com/#/login',
       scope: "openid"
     });
     widget.parseHash(window.location.hash, function(profile, id_token, access_token, state) {

@@ -1,11 +1,3 @@
-App.User.FIXTURES = [
-  {
-    firstName: "Rob"
-    lastName: "Landers"
-    id: "0"
-  }
-]
-
 App.AppPlatforms.FIXTURES = [
   {
     id: "1"

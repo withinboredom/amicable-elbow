@@ -5,8 +5,7 @@ Handlebars.registerHelper "login", ->
   widget = new Auth0Widget
     domain:           'appti2ude.auth0.com'
     clientID:         '4QBrlEZHS38TjIeyubMXCasvau2bJALW'
-    callbackURL:      'http://appti2ude.com/#/app/new'
-    callbackOnLocationHash: true
+    callbackURL:      'http://appti2ude.com/#/login'
     scope: "openid"
 
   # authentication result comes back in `window.location.hash`
@@ -15,7 +14,7 @@ Handlebars.registerHelper "login", ->
      #store the profile and id_token in a cookie or local storage
      $.cookie('profile', profile)
      $.cookie('id_token', id_token)
-     ###
+    ###
     console.log profile
     console.log id_token
 
