@@ -171,14 +171,8 @@ Handle logins
         return widget.signin();
       },
       logout: function() {
-        client.logout();
-        widget = new Auth0Widget({
-          domain: 'appti2ude.auth0.com',
-          clientID: '4QBrlEZHS38TjIeyubMXCasvau2bJALW',
-          callbackURL: 'http://appti2ude.com/',
-          callbackOnLocationHash: true
-        });
-        return widget.signout();
+        $.removeCookie("currentUser");
+        return App.LoginStateManager.send("logout");
       }
     }
   });

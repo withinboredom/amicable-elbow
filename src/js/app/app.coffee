@@ -141,10 +141,5 @@ App.ApplicationController = Ember.AuthenticatedController.extend
       widget.signin()
 
     logout: ->
-      client.logout()
-      widget = new Auth0Widget
-        domain:           'appti2ude.auth0.com'
-        clientID:         '4QBrlEZHS38TjIeyubMXCasvau2bJALW'
-        callbackURL:      'http://appti2ude.com/'
-        callbackOnLocationHash: true
-      widget.signout()
+      $.removeCookie "currentUser"
+      App.LoginStateManager.send "logout"

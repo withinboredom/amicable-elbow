@@ -39,7 +39,11 @@
                             <li><a {{action login "facebook"}} href="#"><span class="glyphicon glyphicon-plus"></span> Add App</a></li>
                         {{else}}
                             {{#link-to "app.new" activeClass="active" tagName="li"}}{{#link-to 'app.new'}}<span class="glyphicon glyphicon-plus"></span> Add App{{/link-to}}{{/link-to}}
-                            <li><a class="brand"><img {{bind-attr src="picture"}} style="height:25px" /> {{nick}}</a> </li>
+                            <li class="dropdown"><a class="brand dropdown-toggle" data-toggle="dropdown" ><img {{bind-attr src="picture"}} style="height:25px" /> {{nick}} <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a {{action logout}} href="#">Logout</a></li>
+                                </ul>
+                            </li>
                         {{/unless}}
                     </ul>
                 </div><!--/.nav-collapse -->
