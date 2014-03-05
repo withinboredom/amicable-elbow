@@ -2,15 +2,22 @@
 (function() {
   App.Router.map(function() {
     return this.resource('app', function() {
-      return this.resource("new", function() {
-        return this.resource("appPack", function() {
-          return this.route("new");
+      this.resource("search", function() {
+        return this.route("results", {
+          path: ":search_term"
+        });
+      });
+      return this.resource("app", function() {
+        this.route("new");
+        this.route("show", {
+          path: ":id"
+        });
+        return this.route("edit", {
+          path: ":id/edit"
         });
       });
     });
   });
-
-  App.AppNewRoute = Ember.AuthenticatedRoute.extend();
 
 }).call(this);
 

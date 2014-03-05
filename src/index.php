@@ -38,7 +38,7 @@
                         {{#unless isAuthenticated}}
                             <li><a {{action login "facebook"}} href="#"><span class="glyphicon glyphicon-plus"></span> Add App</a></li>
                         {{else}}
-                            {{#link-to "new" activeClass="active" tagName="li"}}{{#link-to 'new'}}<span class="glyphicon glyphicon-plus"></span> Add App{{/link-to}}{{/link-to}}
+                            {{#link-to "search" activeClass="active" tagName="li"}}{{#link-to 'search'}}<span class="glyphicon glyphicon-plus"></span> Add App{{/link-to}}{{/link-to}}
                             <li class="dropdown"><a class="brand dropdown-toggle" data-toggle="dropdown" ><img {{bind-attr src="picture"}} style="height:25px" /> {{nick}} <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a {{action logout}} href="#">Logout</a></li>
@@ -53,6 +53,57 @@
         <div class="container">
             {{outlet}}
         </div><!-- /.container -->
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="search">
+        <div class="row">
+            <div class="col-sm-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label">Search for an app here to add</label>
+                        {{input value=searchTerm class="form-control" placeholder=""}}
+                    </div>
+                    <button class="btn btn-success" {{action submit}} type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        {{outlet}}
+    </script>
+    <script type="text/x-handlebars" data-template-name="search/results">
+        {{numberResults}}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="list-group">
+                    <a class="list-group-item">
+                        <div class="media">
+                            <div class="pull-left">
+                                <img class="media-object" src="http://a548.phobos.apple.com/us/r30/Purple4/v4/ec/21/a2/ec21a291-0d92-e919-49e2-e2ce94e72677/icon_57x57.png" width="64px">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Sword &amp; Sworcery EP</h4>
+                                <p>Selected as a "landmark title" by Apple to celebrate Five Years of the App Store!<br<br>*****UNIVERSAL VERSION. Superbrothers: Sword & Sworcery EP is an exploratory action adventure with an emphasis on audiovisual style. Traverse a mythic little realm, use a sword to do battle & evoke sworcery to solve mystical musical mysteries. Co-operate with friends via Twitter, experience a videogame world that is affected by moon phases & help a wandering warrior monk complete her woeful errand....</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="list-group-item">
+                        <div class="media">
+                            <div class="pull-left">
+                                <img class="media-object" src="http://a592.phobos.apple.com/us/r30/Purple6/v4/15/2b/0d/152b0d52-8b7e-bae0-5782-728566ae6033/icon_57x57.png" width="64px">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Superbrothers: Sword &amp; Sworcery EP Micro</h4>
+                                <p>***MICRO EDITION - For iPhone & iPod Touch Only. Superbrothers: Sword & Sworcery EP is an exploratory action adventure with an emphasis on audiovisual style. Traverse a mythic little realm, use a sword to do battle & evoke sworcery to solve mystical musical mysteries. Communicate with friends via Twitter, experience a videogame world that is affected by moon phases & help a wandering warrior monk complete her woeful errand.<br><br>CRITICAL RESPONSE<br><br>***** from over 2000 reviewers!<br>*****...</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <button class="btn btn-success disabled" type="button">Add</button>
+            </div>
+        </div>
     </script>
 
     <script type="text/x-handlebars" data-template-name="index">
@@ -76,19 +127,6 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="new">
-        <div class="row">
-            <div class="col-sm-12">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label">Enter the iTunes url here</label>
-                        {{input value=url class="form-control" placeholder=""}}
-                    </div>
-                    <div class="form-group">
-                        <button {{action 'doResearch'}} type="button" class="btn btn-success">Look up</button>
-                    </div>
-                </form>
-            </div>
-        </div>
         <div class="row">
             <div class="col-sm-12">
                 <section>
@@ -256,6 +294,7 @@
     <script src="js/app/app.js"></script>
     <script src="js/app/Router.js"></script>
     <script src="js/app/index.js"></script>
+    <script src="js/app/newApp.js"></script>
     <script src="js/data/user.js"></script>
     <script src="js/data/app.js"></script>
     <script src="js/data/Fixtures.js"></script>
