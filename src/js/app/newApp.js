@@ -112,30 +112,44 @@
    */
 
   App.NewRoute = Em.AuthenticatedRoute.extend({
-    model: function(params) {},
+    model: function(params) {
+      return this.getResults(params.id).then((function(_this) {
+        return function(data) {
+          if (data == null) {
+            console.log("FIAL");
+            return _this.transitionTo("index");
+          } else {
+            return {
+              title: data.trackTitle,
+              bundle: data.bundleId
+            };
+          }
+        };
+      })(this));
+    },
     getResults: function(terms) {
-      console.log(terms);
       if ((terms == null) || terms === "undefined") {
         return [];
       } else {
         return $.ajax({
-          url: "https://itunes.apple.com/search",
+          url: "https://itunes.apple.com/lookup",
           data: {
-            term: terms.replace(/%20/g, '+'),
+            bundleId: terms,
             country: "US",
             media: "software",
             limit: "5"
           },
           dataType: "jsonp",
-          cache: true
+          cache: false
         }).then(function(data) {
-          return data.results;
+          return data.results[0];
         });
       }
-    }
+    },
+    beforeModel: function(transition, params) {}
   });
 
-  App.NewController = Em.ArrayController.extend({
+  App.NewController = Em.ObjectController.extend({
     actions: {
       search: function() {}
     },

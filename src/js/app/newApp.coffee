@@ -82,26 +82,38 @@ App.SearchResultController = Em.ObjectController.extend
 ###
 App.NewRoute = Em.AuthenticatedRoute.extend
   model: (params) ->
+    @getResults params.id
+    .then (data) =>
+
+      if not data?
+        console.log "FIAL"
+        @transitionTo "index"
+      else
+        {
+          title: data.trackTitle
+          bundle: data.bundleId
+        }
 
   getResults: (terms) ->
-    console.log terms
     if not terms? or terms is "undefined"
       []
     else
       $.ajax
-        url: "https://itunes.apple.com/search"
+        url: "https://itunes.apple.com/lookup"
         data:
-          term: terms.replace(/%20/g, '+')
+          bundleId: terms
           country: "US"
           media: "software"
           limit: "5"
         dataType: "jsonp"
-        cache: true
+        cache: false
       .then (data) ->
-          data.results
+          data.results[0]
+
+  beforeModel: (transition, params) ->
 
 
-App.NewController = Em.ArrayController.extend
+App.NewController = Em.ObjectController.extend
   actions:
     search: ->
 
