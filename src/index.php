@@ -23,7 +23,6 @@
     <script src="http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.1.3.min.js"></script>
     <script src="https://cdn.auth0.com/w2/auth0-widget-2.5.13.min.js"></script>
 
-    <!-- test -->
     <script>
         var client = new WindowsAzure.MobileServiceClient(
             "https://appti2ude.azure-mobile.net/",
