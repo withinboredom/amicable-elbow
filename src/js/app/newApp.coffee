@@ -52,7 +52,7 @@ App.SearchResultsController = Em.ArrayController.extend
       item.set("isSelected", false) for item in selected
 
       selection = @filter (result) ->
-        result.get("trackId") is id
+        result.get("bundleId") is id
       item.set("isSelected", true) for item in selection
 
       if selection.length > 0
@@ -60,7 +60,7 @@ App.SearchResultsController = Em.ArrayController.extend
       else
         @set "hasSelection", false
 
-      @set "selectedTrackId", id
+      @set "selectedBundleId", id
 
 
 ###
@@ -77,15 +77,21 @@ App.SearchResultController = Em.ObjectController.extend
       "list-group-item"
   ).property "isSelected"
 
+###
+  Create a new app, if it doesn't already exist
+###
 App.NewRoute = Em.AuthenticatedRoute.extend
   model: (params) ->
-    if not params.search_term? or params.search_term is "undefined"
+
+  getResults: (terms) ->
+    console.log terms
+    if not terms? or terms is "undefined"
       []
     else
       $.ajax
         url: "https://itunes.apple.com/search"
         data:
-          term: encodeURIComponent(params.search_term).replace(/%2520/g, '+')
+          term: terms.replace(/%20/g, '+')
           country: "US"
           media: "software"
           limit: "5"
@@ -93,6 +99,7 @@ App.NewRoute = Em.AuthenticatedRoute.extend
         cache: true
       .then (data) ->
           data.results
+
 
 App.NewController = Em.ArrayController.extend
   actions:

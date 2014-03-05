@@ -72,7 +72,7 @@
           item.set("isSelected", false);
         }
         selection = this.filter(function(result) {
-          return result.get("trackId") === id;
+          return result.get("bundleId") === id;
         });
         for (_j = 0, _len1 = selection.length; _j < _len1; _j++) {
           item = selection[_j];
@@ -83,7 +83,7 @@
         } else {
           this.set("hasSelection", false);
         }
-        return this.set("selectedTrackId", id);
+        return this.set("selectedBundleId", id);
       }
     }
   });
@@ -106,15 +106,22 @@
     }).property("isSelected")
   });
 
+
+  /*
+    Create a new app, if it doesn't already exist
+   */
+
   App.NewRoute = Em.AuthenticatedRoute.extend({
-    model: function(params) {
-      if ((params.search_term == null) || params.search_term === "undefined") {
+    model: function(params) {},
+    getResults: function(terms) {
+      console.log(terms);
+      if ((terms == null) || terms === "undefined") {
         return [];
       } else {
         return $.ajax({
           url: "https://itunes.apple.com/search",
           data: {
-            term: encodeURIComponent(params.search_term).replace(/%2520/g, '+'),
+            term: terms.replace(/%20/g, '+'),
             country: "US",
             media: "software",
             limit: "5"

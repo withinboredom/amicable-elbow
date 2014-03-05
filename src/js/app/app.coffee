@@ -41,11 +41,9 @@ if window.location.hash.match /^#access_token/
         nick: profile.nickname
         picture: profile.picture
         identities: profile.identities
-
-      console.log profile
+      App.LoginStateManager.send "login"
 
       if App? and App.LoginStateManager?
-        App.LoginStateManager.send "login"
         window.location.hash = "#/app/new"
         window.location.hash.substring 1
 
@@ -82,6 +80,8 @@ App.LoginStateManager = Ember.StateManager.create
     else
       "NotAuthenticated")()
 
+  completed: false
+
   Authenticated: Ember.State.create
     enter: ->
       console.log "enter #{@name}"
@@ -101,14 +101,26 @@ Ember.AuthenticatedController = Ember.Controller.extend
   authStateBinding: Ember.Binding.oneWay "App.LoginStateManager.currentState.name"
   authState: null
 
-  pictureBinding: Ember.Binding.oneWay "App.user.picture"
+  pictureBinding: "App.user.picture"
   picture: null
 
   nickBinding: Ember.Binding.oneWay "App.user.nick"
   nick: null
 
   isAuthenticated: (->
-    (@get("authState") is "Authenticated")
+    if @get("authState") is "Authenticated"
+      #pbinding = Ember.Binding.from(@pictureBinding).to("App.user.picture")
+      #pbinding.connect @
+      Ember.bind @, "picture", "App.user.picture"
+      #nbinding = Ember.Binding.from(@nickBinding).to("App.user.nick")
+      #nbinding.connect @
+      Ember.bind @, "nick", "App.user.nick"
+
+      console.log @get("nick")
+
+      true
+    else
+      false
   ).property "authState"
 
 ###

@@ -7,16 +7,18 @@
           path: ":search_term"
         });
       });
-      return this.resource("app", function() {
-        this.route("new", {
-          path: "new/:id"
-        });
-        this.route("show", {
-          path: ":id"
-        });
-        return this.route("edit", {
-          path: ":id/edit"
-        });
+      this.resource("new", {
+        path: "new/:id"
+      }, function() {
+        this.route("rechargePacks");
+        this.route("creditPacks");
+        return this.route("subscriptions");
+      });
+      this.route("show", {
+        path: ":id"
+      });
+      return this.route("edit", {
+        path: ":id/edit"
       });
     });
   });

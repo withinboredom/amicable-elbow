@@ -52,9 +52,8 @@ Handle logins
           picture: profile.picture,
           identities: profile.identities
         });
-        console.log(profile);
+        App.LoginStateManager.send("login");
         if ((typeof App !== "undefined" && App !== null) && (App.LoginStateManager != null)) {
-          App.LoginStateManager.send("login");
           window.location.hash = "#/app/new";
           window.location.hash.substring(1);
         }
@@ -100,6 +99,7 @@ Handle logins
         return "NotAuthenticated";
       }
     })(),
+    completed: false,
     Authenticated: Ember.State.create({
       enter: function() {
         return console.log("enter " + this.name);
@@ -127,12 +127,19 @@ Handle logins
   Ember.AuthenticatedController = Ember.Controller.extend({
     authStateBinding: Ember.Binding.oneWay("App.LoginStateManager.currentState.name"),
     authState: null,
-    pictureBinding: Ember.Binding.oneWay("App.user.picture"),
+    pictureBinding: "App.user.picture",
     picture: null,
     nickBinding: Ember.Binding.oneWay("App.user.nick"),
     nick: null,
     isAuthenticated: (function() {
-      return this.get("authState") === "Authenticated";
+      if (this.get("authState") === "Authenticated") {
+        Ember.bind(this, "picture", "App.user.picture");
+        Ember.bind(this, "nick", "App.user.nick");
+        console.log(this.get("nick"));
+        return true;
+      } else {
+        return false;
+      }
     }).property("authState")
   });
 
