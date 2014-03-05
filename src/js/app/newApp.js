@@ -56,9 +56,54 @@
    */
 
   App.SearchResultsController = Em.ArrayController.extend({
+    needs: "search",
+    itemController: "searchResult",
     numberResults: (function() {
       return this.get("length");
-    }).property("@length")
+    }).property("length"),
+    actions: {
+      select: function(id) {
+        var item, selected, selection, _i, _j, _len, _len1;
+        selected = this.filter(function(result) {
+          return result.get("isSelected") === true;
+        });
+        for (_i = 0, _len = selected.length; _i < _len; _i++) {
+          item = selected[_i];
+          item.set("isSelected", false);
+        }
+        selection = this.filter(function(result) {
+          return result.get("trackId") === id;
+        });
+        for (_j = 0, _len1 = selection.length; _j < _len1; _j++) {
+          item = selection[_j];
+          item.set("isSelected", true);
+        }
+        if (selection.length > 0) {
+          this.set("hasSelection", true);
+        } else {
+          this.set("hasSelection", false);
+        }
+        return this.set("selectedTrackId", id);
+      }
+    }
+  });
+
+
+  /*
+    Individual search results
+   */
+
+  App.SearchResultController = Em.ObjectController.extend({
+    shortDescription: (function() {
+      return "" + (this.get("description").substring(0, 256)) + " [...]";
+    }).property("description"),
+    style: (function() {
+      if (this.get("isSelected")) {
+        return "list-group-item active";
+      } else {
+        return "list-group-item";
+      }
+    }).property("isSelected")
   });
 
   App.NewRoute = Em.AuthenticatedRoute.extend({

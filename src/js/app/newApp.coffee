@@ -40,9 +40,42 @@ App.SearchController = Em.Controller.extend
   Handle the displaying of the results
 ###
 App.SearchResultsController = Em.ArrayController.extend
+  needs: "search"
+  itemController: "searchResult"
   numberResults: (->
     @get "length"
-  ).property "@length"
+  ).property "length"
+  actions:
+    select: (id) ->
+      selected = @filter (result) ->
+        result.get("isSelected") is true
+      item.set("isSelected", false) for item in selected
+
+      selection = @filter (result) ->
+        result.get("trackId") is id
+      item.set("isSelected", true) for item in selection
+
+      if selection.length > 0
+        @set "hasSelection", true
+      else
+        @set "hasSelection", false
+
+      @set "selectedTrackId", id
+
+
+###
+  Individual search results
+###
+App.SearchResultController = Em.ObjectController.extend
+  shortDescription: (->
+    "#{@get("description").substring(0, 256)} [...]"
+  ).property "description"
+  style: (->
+    if @get "isSelected"
+      "list-group-item active"
+    else
+      "list-group-item"
+  ).property "isSelected"
 
 App.NewRoute = Em.AuthenticatedRoute.extend
   model: (params) ->

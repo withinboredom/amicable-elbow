@@ -8,7 +8,9 @@
         });
       });
       return this.resource("app", function() {
-        this.route("new");
+        this.route("new", {
+          path: "new/:id"
+        });
         this.route("show", {
           path: ":id"
         });

@@ -1,0 +1,19 @@
+<script type="text/x-handlebars" data-template-name="index">
+    <h1>Top 50 Free Apps</h1>
+
+    <ul>
+        {{#each}}
+            <li class="app">
+                {{displayName}} for {{platform.displayName}} in category: {{category.displayName}}
+                <ul class="stats">
+                    <li>PerHour: {{money perHour}}</li>
+                    <li>toComplete: {{money toComplete}}</li>
+                    <li>Unlock All: {{money unlockAll}}</li>
+                    <li>Subscription: {{money subscription}}</li>
+                </ul>
+                <ul class="comments">
+                </ul>
+            </li>
+        {{/each}}
+    </ul>
+</script>

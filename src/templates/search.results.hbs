@@ -1,0 +1,31 @@
+<script type="text/x-handlebars" data-template-name="search/results">
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="list-group">
+                {{#each}}
+                    <a {{bind-attr class="style"}} {{action select trackId}}>
+                        <div class="media">
+                            <div class="pull-left">
+                                <img class="media-object" {{bind-attr src=artworkUrl60}} width="64px">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{trackName}}</h4>
+                            </div>
+                            <p>{{shortDescription}}</p>
+                        </div>
+                    </a>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            {{#if hasSelection}}
+                {{#link-to "app.new" selectedTrackId class="btn btn-success"}}Add{{/link-to}}
+            {{else}}
+                <button class="btn btn-success disabled" type="button">Add</button>
+            {{/if}}
+        </div>
+    </div>
+</script>

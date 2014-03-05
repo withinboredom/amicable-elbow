@@ -1,0 +1,14 @@
+<script type="text/x-handlebars" data-template-name="search">
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label">Search for an app here to add</label>
+                    {{input value=searchTerm class="form-control" placeholder=""}}
+                </div>
+                <button class="btn btn-success" {{action submit}} type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    {{outlet}}
+</script>

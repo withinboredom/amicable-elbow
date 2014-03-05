@@ -4,7 +4,8 @@ App.Router.map ->
       @route "results",
         path: ":search_term"
     @resource "app", ->
-      @route "new"
+      @route "new",
+        path: "new/:id"
       @route "show",
         path: ":id"
       @route "edit",
