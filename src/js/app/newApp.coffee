@@ -84,14 +84,14 @@ App.NewRoute = Em.AuthenticatedRoute.extend
   model: (params) ->
     @getResults params.id
     .then (data) =>
-
       if not data?
         console.log "FIAL"
         @transitionTo "index"
       else
         {
-          title: data.trackTitle
+          title: data.trackName
           bundle: data.bundleId
+          price: data.price
         }
 
   getResults: (terms) ->
@@ -110,16 +110,19 @@ App.NewRoute = Em.AuthenticatedRoute.extend
       .then (data) ->
           data.results[0]
 
-  beforeModel: (transition, params) ->
-
-
+###
+  Computes things about the app
+###
 App.NewController = Em.ObjectController.extend
-  actions:
-    search: ->
-
-  searchTermUrl: (->
-    encodeURIComponent @get "searchTerm")
-    .property "searchTerm"
-  numberResults: (->
-    @get("length"))
-    .property "@length"
+  freePlay: (->
+    return @get("playTime") * @get("lives")
+  ).property "playTime", "lives"
+  livesPerHour: (->
+    return 60 / @get("playTime")
+  ).property "playTime"
+  renewedPerHour: (->
+    return 60 / @get("rechargeTime")
+  ).property "rechargeTime"
+  remainingLivesFirstHour: (->
+    return @get("livesPerHour") - @get("freePlay") - @get("renewedPerHour")
+  ).property "livesPerHour", "freePlay", "renewedPerHour"

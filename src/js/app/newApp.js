@@ -120,8 +120,9 @@
             return _this.transitionTo("index");
           } else {
             return {
-              title: data.trackTitle,
-              bundle: data.bundleId
+              title: data.trackName,
+              bundle: data.bundleId,
+              price: data.price
             };
           }
         };
@@ -145,20 +146,27 @@
           return data.results[0];
         });
       }
-    },
-    beforeModel: function(transition, params) {}
+    }
   });
 
+
+  /*
+    Computes things about the app
+   */
+
   App.NewController = Em.ObjectController.extend({
-    actions: {
-      search: function() {}
-    },
-    searchTermUrl: (function() {
-      return encodeURIComponent(this.get("searchTerm"));
-    }).property("searchTerm"),
-    numberResults: (function() {
-      return this.get("length");
-    }).property("@length")
+    freePlay: (function() {
+      return this.get("playTime") * this.get("lives");
+    }).property("playTime", "lives"),
+    livesPerHour: (function() {
+      return 60 / this.get("playTime");
+    }).property("playTime"),
+    renewedPerHour: (function() {
+      return 60 / this.get("rechargeTime");
+    }).property("rechargeTime"),
+    remainingLivesFirstHour: (function() {
+      return this.get("livesPerHour") - this.get("freePlay") - this.get("renewedPerHour");
+    }).property("livesPerHour", "freePlay", "renewedPerHour")
   });
 
 }).call(this);
