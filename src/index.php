@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/bootstrap-switch.css">
 
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -34,6 +35,7 @@
     <script src="js/libs/components/jquery.cookie.js"></script>
     <script src="js/libs/accounting.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/libs/bootstrap-switch.js"></script>
     <script src="js/libs/components/handlebars/handlebars.js"></script>
     <script src="js/libs/components/ember/ember.js"></script>
     <script src="js/libs/ember-states.js"></script>
