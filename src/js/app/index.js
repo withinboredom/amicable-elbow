@@ -11,6 +11,17 @@
     }
   });
 
+  App.AppRoute = Ember.Route.extend({
+    actions: {
+      willTransition: function(transition) {
+        if ($("a.brand.dropdown-toggle").is(":visible") === true) {
+          $("button.navbar-toggle").click();
+        }
+        return true;
+      }
+    }
+  });
+
 }).call(this);
 
 //# sourceMappingURL=index.map
