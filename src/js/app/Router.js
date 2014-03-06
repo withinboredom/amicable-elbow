@@ -7,12 +7,8 @@
           path: ":search_term"
         });
       });
-      this.resource("new", {
+      this.route("new", {
         path: "new/:id"
-      }, function() {
-        this.route("rechargePacks");
-        this.route("creditPacks");
-        return this.route("subscriptions");
       });
       this.route("show", {
         path: ":id"

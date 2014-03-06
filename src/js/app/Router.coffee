@@ -3,11 +3,8 @@ App.Router.map ->
     @resource "search", ->
       @route "results",
         path: ":search_term"
-    @resource "new",
-      path: "new/:id", ->
-        @route "rechargePacks"
-        @route "creditPacks"
-        @route "subscriptions"
+    @route "new",
+      path: "new/:id"
     @route "show",
       path: ":id"
     @route "edit",
