@@ -34,7 +34,7 @@
     <script src="js/libs/components/jquery/jquery.js"></script>
     <script src="js/libs/components/jquery.cookie.js"></script>
     <script src="js/libs/accounting.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="js/libs/bootstrap-switch.js"></script>
     <script src="js/libs/components/handlebars/handlebars.js"></script>
     <script src="js/libs/components/ember/ember.js"></script>
