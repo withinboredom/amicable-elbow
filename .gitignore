@@ -5,3 +5,5 @@ components
 src/js/libs/components
 *.min.js
 *.min.css
+*.js
+*.min.css.map
