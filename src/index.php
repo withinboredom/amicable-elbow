@@ -33,12 +33,12 @@
 
     <script src="js/libs/components/jquery/jquery.js"></script>
     <script src="js/libs/components/jquery.cookie.js"></script>
-    <script src="js/libs/accounting.min.js"></script>
+    <script src="js/libs/accounting.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/libs/bootstrap-switch.min.js"></script>
+    <script src="js/libs/bootstrap-switch.js"></script>
     <script src="js/libs/components/handlebars/handlebars.js"></script>
     <script src="js/libs/components/ember/ember.js"></script>
-    <script src="js/libs/ember-states.min.js"></script>
+    <script src="js/libs/ember-states.js"></script>
     <script src="js/libs/components/ember-data/ember-data.js"></script>
     <script src="js/helpers/helpers.js"></script>
     <script src="js/app/app.js"></script>
