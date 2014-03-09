@@ -21,9 +21,26 @@ then
     exit 1
 fi
 
+echo "Creating VM"
 azure vm create --connect $CLOUD $IMAGE $USER $PASSWORD --ssh 222$ID --availability-set $AVAIL --vm-size $VMSIZE
-azure vm endpoint create $CLOUD-$ID 900$ID 9001
-azure vm endpoint create-multiple $CLOUD-$ID 80:80:tcp:false:HTTP:http
+
+sleep 120
+echo "Creating endpoint for deployment"
+if [ $ID = "1" ]
+then
+    azure vm endpoint create $CLOUD 900$ID 9001
+else
+    azure vm endpoint create $CLOUD-$ID 900$ID 9001
+fi
+
+sleep 2
+echo "Creating http enpoint"
+if [ $ID = "1" ]
+then
+    azure vm endpoint create-multiple $CLOUD 80:80:tcp:false:HTTP:http
+else
+    azure vm endpoint create-multiple $CLOUD-$ID 80:80:tcp:false:HTTP:http
+fi
 
 echo "Servers are online, initiating deployment system"
 DEPLOYMENT=`curl -u $AUTH https://api.github.com/repos/$REPO/hooks | underscore filter "value.config.url is '$URL:900$ID'" --coffee | underscore pluck id | underscore reduce ""`
