@@ -3,7 +3,5 @@
 vendor
 components
 src/js/libs/components
-composer.lock
-composer.phar
 *.min.js
 *.min.css
