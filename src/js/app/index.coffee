@@ -12,6 +12,6 @@ App.IndexRoute = Ember.Route.extend
 App.AppRoute = Ember.Route.extend
   actions:
     willTransition: (transition) ->
-      if $("button.navbar-toggle").is(":visible") is true
+      if $("button.navbar-toggle").is(":visible") is true and $("a.brand.dropdown-toggle").is(":visible") is true
         $("button.navbar-toggle").click()
       true
