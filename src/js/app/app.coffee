@@ -43,15 +43,17 @@ if window.location.hash.match /^#access_token/
         identities: profile.identities
       App.LoginStateManager.send "login"
 
-      if App? and App.LoginStateManager?
-        window.location.hash = "#/app/new"
-        window.location.hash.substring 1
+      $.cookie "currentUser", JSON.stringify(App.user.baseObj()),
+        domain: ".appti2ude.com"
 
-      $.cookie "currentUser", JSON.stringify(App.user.baseObj())
+      window.location.href = "http://www.appti2ude.com/#/app/search"
+      console.log "Moving routes"
     ))
 
-  window.location.hash = "#/app/new"
+  window.location.hash = "#/"
   window.location.hash.substring 1
+
+
 
 ###
   End logins
@@ -134,9 +136,14 @@ Ember.AuthenticatedRoute = Ember.Route.extend
     (@get("authState") is "Authenticated")
   ).property "authState"
 
-  beforeModel: ->
+  authenticationChanged: (->
     if not @get("isAuthenticated")
       @transitionTo "index"
+      console.log "Tried accessing authenticated page, redirected to index."
+  ).observes "authState"
+
+  beforeModel: ->
+    @authenticationChanged()
 
 ###
   The application controller
@@ -153,5 +160,6 @@ App.ApplicationController = Ember.AuthenticatedController.extend
       widget.signin()
 
     logout: ->
-      $.removeCookie "currentUser"
+      $.removeCookie "currentUser",
+        domain: ".appti2ude.com"
       App.LoginStateManager.send "logout"

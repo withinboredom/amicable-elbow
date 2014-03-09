@@ -27,6 +27,8 @@ App.SearchResultsRoute = Em.Route.extend
       .then (data) ->
           data.results
 
+App.SearchRoute = Em.AuthenticatedRoute.extend()
+
 ###
   Handle search submissions
 ###

@@ -36,6 +36,8 @@
     }
   });
 
+  App.SearchRoute = Em.AuthenticatedRoute.extend();
+
 
   /*
     Handle search submissions

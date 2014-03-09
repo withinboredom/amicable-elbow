@@ -53,14 +53,14 @@ Handle logins
           identities: profile.identities
         });
         App.LoginStateManager.send("login");
-        if ((typeof App !== "undefined" && App !== null) && (App.LoginStateManager != null)) {
-          window.location.hash = "#/app/new";
-          window.location.hash.substring(1);
-        }
-        return $.cookie("currentUser", JSON.stringify(App.user.baseObj()));
+        $.cookie("currentUser", JSON.stringify(App.user.baseObj()), {
+          domain: ".appti2ude.com"
+        });
+        window.location.href = "http://www.appti2ude.com/#/app/search";
+        return console.log("Moving routes");
       });
     });
-    window.location.hash = "#/app/new";
+    window.location.hash = "#/";
     window.location.hash.substring(1);
   }
 
@@ -154,10 +154,14 @@ Handle logins
     isAuthenticated: (function() {
       return this.get("authState") === "Authenticated";
     }).property("authState"),
-    beforeModel: function() {
+    authenticationChanged: (function() {
       if (!this.get("isAuthenticated")) {
-        return this.transitionTo("index");
+        this.transitionTo("index");
+        return console.log("Tried accessing authenticated page, redirected to index.");
       }
+    }).observes("authState"),
+    beforeModel: function() {
+      return this.authenticationChanged();
     }
   });
 
@@ -178,7 +182,9 @@ Handle logins
         return widget.signin();
       },
       logout: function() {
-        $.removeCookie("currentUser");
+        $.removeCookie("currentUser", {
+          domain: ".appti2ude.com"
+        });
         return App.LoginStateManager.send("logout");
       }
     }
