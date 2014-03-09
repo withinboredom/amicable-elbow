@@ -15,6 +15,15 @@
                             <p>{{shortDescription}}</p>
                         </div>
                     </a>
+                {{else}}
+                    <a class="list-group-item" href="#">
+                        <div class="media">
+                            <div class="media-body">
+                                <h4 class="media-heading">No results found.</h4>
+                            </div>
+                            <p>Please try your search again.</p>
+                        </div>
+                    </a>
                 {{/each}}
             </div>
         </div>
