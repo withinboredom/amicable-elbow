@@ -7,3 +7,7 @@ src/js/libs/components
 *.min.css
 *.js
 *.min.css.map
+!bootstrap.js
+!accounting.js
+!bootstrap-switch.js
+!ember-states.js
