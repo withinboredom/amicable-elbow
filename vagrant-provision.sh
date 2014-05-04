@@ -11,7 +11,7 @@ aptitude -y safe-upgrade
 echo "Installing packages"
 sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password root'
-sudo apt-get -y install mysql-server-5.5 php5-mysql libsqlite3-dev apache2 php5 php5-dev build-essential php-pear
+sudo apt-get -y install mysql-server-5.5 php5-mysql libsqlite3-dev apache2 php5 php5-dev build-essential php-pear git ruby rubygems
 
 # Set timezone
 echo "America/New_York" | sudo tee /etc/timezone
@@ -65,7 +65,7 @@ fi
 if [ ! -f /var/log/mailcatchersetup ];
 then
     echo "Installing mailcatcher"
-    sudo /opt/vagrant_ruby/bin/gem install mailcatcher
+    sudo gem install mailcatcher
 
     echo "Mail catcher installed"
     sudo touch /var/log/mailcatchersetup
@@ -100,7 +100,18 @@ echo "Linking web root to vagrant root"
 rm -rf /var/www
 ln -fs /vagrant/src /var/www
 
-# Make sure things are up and running as they should be
-mailcatcher --http-ip=192.168.3.10
+# Make sure things are up and running as they shoulxd be
+mailcatcher --http-ip=192.168.137.139
+
+cd /vagrant
+php composer.phar self-update
+php composer.phar install
+php composer.phar update
+
+rm -rf /vagrant/src/js/libs/components
+cp /vagrant/components /vagrant/src/js/libs -r
+
+cp /vagrant/vendor/kalenjordan/jquery-cookie/jquery.cookie.js /vagrant/src/js/libs/components
+
 sudo service apache2 restart
 echo "All done!"
