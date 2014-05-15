@@ -52,3 +52,6 @@ then
 else
     echo "hook already created ... nothing to do"
 fi
+
+echo "Configuring server"
+

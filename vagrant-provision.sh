@@ -11,7 +11,7 @@ aptitude -y safe-upgrade
 echo "Installing packages"
 sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password root'
-sudo apt-get -y install mysql-server-5.5 php5-mysql libsqlite3-dev apache2 php5 php5-dev build-essential php-pear git ruby rubygems
+sudo apt-get -y install mysql-server-5.5 php5-mysql libsqlite3-dev apache2 php5 php5-dev build-essential php-pear git ruby rubygems sshpass
 
 # Set timezone
 echo "America/New_York" | sudo tee /etc/timezone

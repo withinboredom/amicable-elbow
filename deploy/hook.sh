@@ -1,6 +1,6 @@
 ﻿#!/bin/bash
 
-cd /var/www/appti2ude
+cd /var/www/$5
 echo "Fetching code changes"
 git fetch
 echo "Reseting local changes"
@@ -10,4 +10,4 @@ git merge origin/master
 echo "Updating dependencies"
 ./composer.phar update
 echo "Updating external links"
-cp /var/www/appti2ude/vendor/kalenjordan/jquery-cookie/jquery.cookie.js /var/www/appti2ude/components/
+source provision.sh
